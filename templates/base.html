@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .fileInput {
+            margin-top: 10px;
+
+            margin-left: 200px;
+
+        }
+
+        .upload-area {
+            border: 3px dashed #667eea;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9ff;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: black;
+            margin-bottom: 30px;
+            font-size: 0.95em;
+            margin-top: 20px;
+        }
+
+        .upload-subtext {
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .analyze-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            margin-top: 30px;
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .analyze-btn:active {
+            transform: translateY(0);
+        }
+
+        .result-box {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .result-img {
+            display: block;
+            margin: 0 auto 15px;
+            max-width: 200px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🔍 Gender & Age Predictor</h1>
+
+        <p class="subtitle">Upload a photo to predict age and gender</p>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📸</div>
+
+
+                <input type="file" name="fileInput" accept="image/*" required>
+                <div class="upload-subtext">Supports: JPG, PNG, JPEG</div>
+            </div>
+            <div class="preview-section" id="previewSection">
+                <button class="analyze-btn" type="submit">Analyze Image</button>
+            </div>
+        </form>
+        {% if Gender %}
+        <div class="result-box">
+            <img src="{{ img_path }}" class="result-img">
+            <h3>Gender: {{ Gender }}</h3>
+            <h3>Age: {{ Age }}</h3>
+        </div>
+        {% endif %}
+
+    </div>
+    <script>
+        if (performance.navigation.type === 1) {
+            window.location = "/";
+        }
+    </script>
+</body>
+
+</html>
